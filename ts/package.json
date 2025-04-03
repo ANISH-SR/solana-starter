@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "build": "npx tsc",
     "airdrop_to_wallet": "ts-node ./tools/airdrop_to_wallet.ts",
     "base58_to_wallet": "ts-node ./tools/base58_to_wallet.ts",
     "wallet_to_base58": "ts-node ./tools/wallet_to_base58.ts",
