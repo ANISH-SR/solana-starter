@@ -13,14 +13,22 @@ const myKeypairSigner = createSignerFromKeypair(umi, keypair);
 umi.use(signerIdentity(myKeypairSigner));
 umi.use(mplTokenMetadata())
 
+const uri = "https://devnet.irys.xyz/GgGw2C6jfnHtPgz3ASCNvWguhP4ZXrqtcKnGEKmtyf5h"
 const mint = generateSigner(umi);
 
 (async () => {
-    // let tx = ???
-    // let result = await tx.sendAndConfirm(umi);
-    // const signature = base58.encode(result.signature);
+    let tx = await createNft(
+        umi,
+        {
+            mint, name: "nike-prem", symbol: "O", uri,
+            sellerFeeBasisPoints: percentAmount(5)
+        }
+    );
+
+    let result = await tx.sendAndConfirm(umi);
+    const signature = base58.encode(result.signature);
     
-    // console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
+    console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
 
     console.log("Mint Address: ", mint.publicKey);
 })();
